@@ -1,50 +1,75 @@
 import React from 'react';
+import { SvgXml } from 'react-native-svg';
 import Styled from 'styled-components/native';
-import { StyleSheet } from 'react-native';
-import { Card } from 'react-native-paper';
 
-const RestaurantCard = Styled(Card)`
-  background-color: ${props => props.theme.colors.bg.primary};
-`;
+import { Spacer } from '../../../components/Spacer.component';
+import { Text } from '../../../components/typography/Text.component';
 
-const RestaurantCardCover = Styled(Card.Cover)`
-  padding: ${props => props.theme.space[3]};
-  background-color: ${props => props.theme.colors.bg.primary};
-`;
+import {
+  RestaurantCard,
+  RestaurantCardCover,
+  Info,
+  Address,
+  RatingRow,
+  IconSection,
+  StateContainer,
+  IconImage,
+} from './RestaurantsInfoCard.styles';
 
-const Title = Styled.Text`
-  padding: ${props => props.theme.space[3]};
-  color:${props => props.theme.colors.ui.primary};
-  font-family:${props => props.theme.fonts.body};
+import star from '../../../../assets/star';
+import open from '../../../../assets/open';
+
+const RedLabel = Styled(Text)`
+  color: red;
 `;
 
 const RestaurantsInfoCard = ({ restaurant = {} }) => {
   const {
     name = 'Restaurant Name',
-    icon,
+    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
     photos = 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg',
-    address = '레스토랑 주소',
-    openingNow = true,
-    rating = 4,
-    isClosedTemporarily,
+    address = '9 St',
+    isOpenNow = true,
+    rating = 3.4,
+    isClosedTemporarily = true,
   } = restaurant;
+
+  const ratingArr = Array.from(new Array(Math.floor(rating)));
+
   return (
-    <RestaurantCard elevation={5} style={styles.card}>
-      <RestaurantCardCover
-        key={name}
-        style={styles.cover}
-        source={{ uri: photos }}
-      />
-      <Title>{name}</Title>
+    <RestaurantCard elevation={5}>
+      <RestaurantCardCover key={name} source={{ uri: photos }} />
+      <Info>
+        <Text varient="label">{name}</Text>
+        <IconSection>
+          <RatingRow>
+            {ratingArr.map((_, index) => (
+              <SvgXml
+                key={`${name}-rating-${index}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
+            ))}
+          </RatingRow>
+          <StateContainer>
+            {isClosedTemporarily && (
+              <RedLabel varient="label">CLOSED TEMPORARILY</RedLabel>
+            )}
+            <Spacer position={'left'} size="large">
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            </Spacer>
+
+            <Spacer position={'left'} size="large">
+              <IconImage source={{ uri: icon }} />
+            </Spacer>
+          </StateContainer>
+        </IconSection>
+
+        <Address>{address}</Address>
+      </Info>
     </RestaurantCard>
   );
 };
 
 export default RestaurantsInfoCard;
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-  },
-  cover: {},
-});
