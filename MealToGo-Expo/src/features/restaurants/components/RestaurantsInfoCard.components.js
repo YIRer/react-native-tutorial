@@ -2,7 +2,7 @@ import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import Styled from 'styled-components/native';
 
-import { Spacer } from '../../../components/Spacer.component';
+import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/Text.component';
 
 import {
@@ -27,7 +27,9 @@ const RestaurantsInfoCard = ({ restaurant = {} }) => {
   const {
     name = 'Restaurant Name',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
-    photos = 'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg',
+    photos = [
+      'https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg',
+    ],
     address = '9 St',
     isOpenNow = true,
     rating = 3.4,
@@ -38,7 +40,7 @@ const RestaurantsInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{ uri: photos }} />
+      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text varient="label">{name}</Text>
         <IconSection>

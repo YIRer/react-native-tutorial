@@ -1,7 +1,11 @@
 {
   "extends": ["@react-native-community"],
-  "rules": {
-    "quotes": [2, "double", { "avoidEscape": true }],
-    "endOfLine": "LF"
-  }
+  "overrides": [
+    {
+      "rules": {
+        "quotes": [2, "double", { "avoidEscape": true }],
+        "endOfLine": "LF"
+      }
+    }
+  ]
 }
