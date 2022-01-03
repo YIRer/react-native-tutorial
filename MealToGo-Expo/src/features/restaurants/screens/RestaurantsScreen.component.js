@@ -26,9 +26,9 @@ const LoaderContainer = Styled.View`
   left: 50%;
 `;
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantContext);
-
+  console.log(navigation);
   return (
     <SafeArea>
       <Search />
