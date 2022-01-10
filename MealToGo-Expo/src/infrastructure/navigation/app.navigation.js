@@ -7,8 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 import { SafeArea } from '../../components/utility/SafeArea.component';
-import RestaurantsScreen from '../../features/restaurants/screens/RestaurantsScreen.component';
 import { RestaurantNavigator } from './restaurant.navigation';
+import MapScreen from '../../features/map/screens/Map.screen';
 
 const Tab = createBottomTabNavigator();
 const TAB_ICON = {
@@ -38,14 +38,6 @@ const createScreenOptions = ({ route }) => {
       />
     ),
   };
-};
-
-const MapScreen = () => {
-  return (
-    <SafeArea>
-      <Text>Map Page</Text>
-    </SafeArea>
-  );
 };
 
 const SettingScreen = () => {

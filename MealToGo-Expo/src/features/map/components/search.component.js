@@ -4,7 +4,11 @@ import Styled from 'styled-components/native';
 import { LocationContext } from '../../../services/location/location.context';
 
 const SearchContainer = Styled.View`
-  padding:${props => props.theme.space[2]};
+  padding:${props => props.theme.space[3]};
+  position: absolute;
+  z-index: 999;
+  top: 20px;
+  width: 100%;
 `;
 
 export const Search = () => {
@@ -20,6 +24,7 @@ export const Search = () => {
       <Searchbar
         placeholder="Search for a location"
         value={searchKeyword}
+        icon="map"
         onSubmitEditing={() => {
           search(searchKeyword);
         }}
