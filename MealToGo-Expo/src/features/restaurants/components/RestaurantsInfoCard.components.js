@@ -4,6 +4,7 @@ import Styled from 'styled-components/native';
 
 import { Spacer } from '../../../components/Spacer/Spacer.component';
 import { Text } from '../../../components/typography/Text.component';
+import Favourite from '../../../components/favourites/Favourite.component';
 
 import {
   RestaurantCard,
@@ -41,6 +42,7 @@ const RestaurantsInfoCard = ({ restaurant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text varient="label">{name}</Text>
