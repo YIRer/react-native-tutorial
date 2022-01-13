@@ -16,8 +16,7 @@ export const AuthenticationProvider = ({ children }) => {
       setUser(user);
       setIsAuthentication(true);
     } catch (err) {
-      console.log(err);
-      setError(err);
+      setError(err.toString());
       setIsAuthentication(false);
     } finally {
       setIsLoading(false);
